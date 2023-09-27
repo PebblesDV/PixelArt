@@ -1,7 +1,9 @@
 let XPos = 100
 let YPos = 75
 let size = 10
-let isDoneDrawing = true;
+let arrX = 26;
+let arrY = 32;
+let isDrawing = false;
 
 function setup() {
   createCanvas(640, 480);
@@ -28,15 +30,18 @@ function setup() {
 function draw() {
   background(82, 82, 82);
 
-  fill("white");
+  noStroke();
+  fill(224, 224, 224);
   rect(XPos, YPos, 260, 320); //background rectangle to see how big pixel art will be
-
-  harryArt();
-  snakeArt();
-  toadArt();
 }
 
 function toadArt() {
+  if (isDrawing === true) {
+    return;
+  }
+
+  isDrawing = true;
+
   let toadColors = [ //2D array to fill in toadArt
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 3, 3, 3, 3, 3, 3, 3, 1, 1, 0, 0, 0, 0, 0, 0, 0],
@@ -72,55 +77,64 @@ function toadArt() {
     [0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0],
   ];
 
-  for (let i = 0; i < 32; i++) { //nested loop to draw all the pixels
-    for (let j = 0; j < 26; j++) {
+  for (let i = 0; i < arrY; i++) { //nested loop to draw all the pixels
+    for (let j = 0; j < arrX; j++) {
       setTimeout(function () {
-      switch (toadColors[i][j]) { //switch to assign a color to the numbers used in the 2D array
-        case 0:
-          fill(224, 224, 224); //background fill
-          break;
-        case 1:
-          fill(0, 0, 0); //black
-          break;
-        case 2:
-          fill(204, 204, 204); //light gray
-          break;
-        case 3:
-          fill(192, 1, 6); //dark red
-          break;
-        case 4:
-          fill(237, 29, 17); //lighter red
-          break;
-        case 5:
-          fill(236, 198, 55); //darker skin
-          break;
-        case 6:
-          fill(238, 237, 180); //lighter skin
-          break;
-        case 7:
-          fill(6, 26, 201); //dark blue
-          break;
-        case 8:
-          fill(59, 123, 255); //lighter blue
-          break;
-        case 9:
-          fill(96, 35, 4); //dark brown
-          break;
-        case 10:
-          fill(177, 109, 12); //lighter brown
-          break;
-        case 11:
-          fill(255, 255, 255); //white
-          break;
-      }
-      noStroke();
-      rect(XPos + (j * 10), YPos + (i * 10), size, size); //what the nested loop will draw
+        switch (toadColors[i][j]) { //switch to assign a color to the numbers used in the 2D array
+          case 0:
+            fill(224, 224, 224); //background fill
+            break;
+          case 1:
+            fill(0, 0, 0); //black
+            break;
+          case 2:
+            fill(204, 204, 204); //light gray
+            break;
+          case 3:
+            fill(192, 1, 6); //dark red
+            break;
+          case 4:
+            fill(237, 29, 17); //lighter red
+            break;
+          case 5:
+            fill(236, 198, 55); //darker skin
+            break;
+          case 6:
+            fill(238, 237, 180); //lighter skin
+            break;
+          case 7:
+            fill(6, 26, 201); //dark blue
+            break;
+          case 8:
+            fill(59, 123, 255); //lighter blue
+            break;
+          case 9:
+            fill(96, 35, 4); //dark brown
+            break;
+          case 10:
+            fill(177, 109, 12); //lighter brown
+            break;
+          case 11:
+            fill(255, 255, 255); //white
+            break;
+        }
+
+        if ((i + 1) === arrY && (j + 1) === arrX) {
+          isDrawing = false;
+        }
+        noStroke();
+        rect(XPos + (j * 10), YPos + (i * 10), size, size); //what the nested loop will draw
       }, 80 * i);
     }
   }
 }
 
 function snakeArt() {
+  if (isDrawing === true) {
+    return;
+  }
+
+  isDrawing = true;
   let snakeColors = [ //2D array to fill in snakeArt
     [0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 1, 2, 2, 2, 2, 2, 2, 2, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -156,37 +170,48 @@ function snakeArt() {
     [0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0],
   ];
 
-  for (let i = 0; i < 32; i++) { //nested loop to draw all the pixels
-    for (let j = 0; j < 26; j++) {
+  for (let i = 0; i < arrY; i++) { //nested loop to draw all the pixels
+    for (let j = 0; j < arrX; j++) {
       setTimeout(function () {
-      switch(snakeColors[i][j]) { //switch to assign a color to the numbers used in the 2D array
-        case 0:
-          fill(224, 224, 224); //background fill
-          break;
-        case 1:
-          fill(0, 0, 0); //black
-          break;
-        case 2:
-          fill(32, 178, 170); //lighter green/blue
-          break;
-        case 3:
-          fill(173, 255, 47); //bright green
-          break;
-        case 4:
-          fill(255, 105, 180); //tounge
-          break;
-        case 5:
-          fill(0, 139, 139); //dark green/blue
-          break;
-      }
-      noStroke();
-      rect(XPos + (j * 10), YPos + (i * 10), size, size); //what the nested loop will draw
+        switch (snakeColors[i][j]) { //switch to assign a color to the numbers used in the 2D array
+          case 0:
+            fill(224, 224, 224); //background fill
+            break;
+          case 1:
+            fill(0, 0, 0); //black
+            break;
+          case 2:
+            fill(32, 178, 170); //lighter green/blue
+            break;
+          case 3:
+            fill(173, 255, 47); //bright green
+            break;
+          case 4:
+            fill(255, 105, 180); //tounge
+            break;
+          case 5:
+            fill(0, 139, 139); //dark green/blue
+            break;
+        }
+
+
+
+        if ((i + 1) === arrY && (j + 1) === arrX) {
+          isDrawing = false;
+        }
+        noStroke();
+        rect(XPos + (j * 10), YPos + (i * 10), size, size); //what the nested loop will draw
       }, 80 * i);
     }
   }
 }
 
 function harryArt() {
+  if (isDrawing === true) {
+    return;
+  }
+
+  isDrawing = true;
   let harryColors = [ //2D array to fill in harryArt
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0],
@@ -222,52 +247,58 @@ function harryArt() {
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0],
   ];
 
-  for (let i = 0; i < 32; i++) { //nested loop to draw all the pixels
-    for (let j = 0; j < 26; j++) {
+  for (let i = 0; i < arrY; i++) { //nested loop to draw all the pixels
+    for (let j = 0; j < arrX; j++) {
       setTimeout(function () {
-        switch(harryColors[i][j]) { //switch to assign a color to the numbers used in the 2D array
-        case 0:
-          fill(224, 224, 224); //background fill
-          break;
-        case 1:
-          fill(0, 0, 0); //black
-          break;
-        case 2:
-          fill(227, 197, 151); //skin
-          break;
-        case 3:
-          fill(99, 96, 92); //glasses
-          break;
-        case 4:
-          fill(98, 71, 59); //wand
-          break;
-        case 5:
-          fill(190, 46, 54); //red
-          break;
-        case 6:
-          fill(171, 170, 166); //light gray
-          break;
-        case 7:
-          fill(91, 93, 93); //dark gray
-          break;
-        case 8:
-          fill(153, 51, 255); //purple
-          break;
-        case 9:
-          fill(204, 153, 255); //lighter purple
-          break;
-        case 10:
-          fill(255, 255, 255); //white
-          break;
-      }
-      noStroke();
-      rect(XPos + (j * 10), YPos + (i * 10), size, size); //what the nested loop will draw
+        switch (harryColors[i][j]) { //switch to assign a color to the numbers used in the 2D array
+          case 0:
+            fill(224, 224, 224); //background fill
+            break;
+          case 1:
+            fill(0, 0, 0); //black
+            break;
+          case 2:
+            fill(227, 197, 151); //skin
+            break;
+          case 3:
+            fill(99, 96, 92); //glasses
+            break;
+          case 4:
+            fill(98, 71, 59); //wand
+            break;
+          case 5:
+            fill(190, 46, 54); //red
+            break;
+          case 6:
+            fill(171, 170, 166); //light gray
+            break;
+          case 7:
+            fill(91, 93, 93); //dark gray
+            break;
+          case 8:
+            fill(153, 51, 255); //purple
+            break;
+          case 9:
+            fill(204, 153, 255); //lighter purple
+            break;
+          case 10:
+            fill(255, 255, 255); //white
+            break;
+        }
+
+        if ((i + 1) === arrY && (j + 1) === arrX) {
+          isDrawing = false;
+        }
+        noStroke();
+        rect(XPos + (j * 10), YPos + (i * 10), size, size); //what the nested loop will draw
       }, 80 * i);
     }
   }
 }
 
 // Minimaal 4 pixel art tekeningen​​
-// Er zijn 4 knoppen waarmee de pixel art geselecteerd kan worden​
-// Wanneer een animatie afspeelt kun je geen andere tekening kiezen​
+// Er zijn 4 buttons waarmee de pixel art geselecteerd kan worden​
+// Wanneer een animatie afspeelt (bezig is met genereren) kun je geen andere tekening kiezen​
 // Elke kleur van de pixelart wordt opgeslagen in een variabele​  ​
+// Moet geen tekening zien aan het begin, alleen de achtergrond en buttons
+// Uitleg??
