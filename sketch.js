@@ -1,3 +1,4 @@
+//starting positions of X and Y, rectangle size, X and Y lentgh, isDrawing standard set to "false"
 let XPos = 100
 let YPos = 75
 let size = 10
@@ -20,9 +21,9 @@ function setup() {
   button.position(470, 240);
   button.mousePressed(harryArt);
 
-  button = createButton(""); //button for ??
+  button = createButton("Rainbow"); //button for rainbowArt
   button.position(470, 320);
-  button.mousePressed();
+  button.mousePressed(rainbowArt);
 
   noLoop(); //makes sure loop won't continue
 }
@@ -32,14 +33,13 @@ function draw() {
 
   noStroke();
   fill(224, 224, 224);
-  rect(XPos, YPos, 260, 320); //background rectangle to see how big pixel art will be
+  rect(XPos, YPos, 260, 320); //background rectangle to help see how big pixel art will be
 }
 
 function toadArt() {
-  if (isDrawing === true) {
+  if (isDrawing === true) { //checking whether the art is still being drawn, or if it's done
     return;
   }
-
   isDrawing = true;
 
   let toadColors = [ //2D array to fill in toadArt
@@ -120,21 +120,22 @@ function toadArt() {
         }
 
         if ((i + 1) === arrY && (j + 1) === arrX) {
-          isDrawing = false;
+          isDrawing = false; //checking if the art is done being drawn
         }
+
         noStroke();
-        rect(XPos + (j * 10), YPos + (i * 10), size, size); //what the nested loop will draw
-      }, 80 * i);
+        rect(XPos + (j * 10), YPos + (i * 10), size, size); //rectangles that the nested loop will draw
+      }, 100 * i);
     }
   }
 }
 
 function snakeArt() {
-  if (isDrawing === true) {
+  if (isDrawing === true) { //checking whether the art is still being drawn, or if it's done
     return;
   }
-
   isDrawing = true;
+
   let snakeColors = [ //2D array to fill in snakeArt
     [0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 1, 2, 2, 2, 2, 2, 2, 2, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -194,24 +195,23 @@ function snakeArt() {
             break;
         }
 
-
-
         if ((i + 1) === arrY && (j + 1) === arrX) {
-          isDrawing = false;
+          isDrawing = false; //checking if the art is done being drawn
         }
+
         noStroke();
-        rect(XPos + (j * 10), YPos + (i * 10), size, size); //what the nested loop will draw
-      }, 80 * i);
+        rect(XPos + (j * 10), YPos + (i * 10), size, size); //rectangles that the nested loop will draw
+      }, 100 * i);
     }
   }
 }
 
 function harryArt() {
-  if (isDrawing === true) {
+  if (isDrawing === true) { //checking whether the art is still being drawn, or if it's done
     return;
   }
-
   isDrawing = true;
+
   let harryColors = [ //2D array to fill in harryArt
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0],
@@ -287,18 +287,91 @@ function harryArt() {
         }
 
         if ((i + 1) === arrY && (j + 1) === arrX) {
-          isDrawing = false;
+          isDrawing = false; //checking if the art is done being drawn
         }
+
         noStroke();
-        rect(XPos + (j * 10), YPos + (i * 10), size, size); //what the nested loop will draw
-      }, 80 * i);
+        rect(XPos + (j * 10), YPos + (i * 10), size, size); //rectangles that the nested loop will draw
+      }, 100 * i);
     }
   }
 }
 
-// Minimaal 4 pixel art tekeningen​​
-// Er zijn 4 buttons waarmee de pixel art geselecteerd kan worden​
-// Wanneer een animatie afspeelt (bezig is met genereren) kun je geen andere tekening kiezen​
-// Elke kleur van de pixelart wordt opgeslagen in een variabele​  ​
-// Moet geen tekening zien aan het begin, alleen de achtergrond en buttons
-// Uitleg??
+function rainbowArt() {
+  if (isDrawing === true) { //checking whether the art is still being drawn, or if it's done
+    return;
+  }
+  isDrawing = true;
+
+  let rainbowColors = [ //2D array to fill in rainbowArt
+    [4, 4, 3, 3, 3, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [4, 4, 4, 3, 3, 3, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [5, 4, 4, 4, 3, 3, 3, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0],
+    [5, 5, 4, 4, 4, 3, 3, 3, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 1, 2, 1, 2, 1, 0, 0, 0],
+    [5, 5, 5, 4, 4, 4, 3, 3, 3, 2, 2, 2, 0, 0, 0, 0, 0, 0, 1, 2, 2, 2, 1, 0, 0, 0],
+    [6, 5, 5, 5, 4, 4, 4, 3, 3, 3, 2, 2, 2, 0, 0, 0, 0, 0, 0, 1, 2, 1, 0, 0, 0, 0],
+    [6, 6, 5, 5, 5, 4, 4, 4, 3, 3, 3, 2, 2, 2, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0],
+    [6, 6, 6, 5, 5, 5, 4, 4, 4, 3, 3, 3, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 6, 6, 6, 5, 5, 5, 4, 4, 4, 3, 3, 3, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 6, 6, 6, 5, 5, 5, 4, 4, 4, 3, 3, 3, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 6, 6, 6, 5, 5, 5, 4, 4, 4, 3, 3, 3, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 6, 6, 6, 5, 5, 5, 4, 4, 4, 3, 3, 3, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 6, 6, 6, 5, 5, 5, 4, 4, 4, 3, 3, 3, 2, 2, 2, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 6, 6, 6, 5, 5, 5, 4, 4, 4, 3, 3, 3, 2, 2, 2, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 6, 6, 6, 5, 5, 5, 4, 4, 4, 3, 3, 3, 2, 2, 2, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 6, 6, 6, 5, 5, 5, 4, 4, 4, 3, 3, 3, 2, 2, 2, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 6, 6, 6, 5, 5, 5, 4, 4, 4, 3, 3, 3, 2, 2, 2, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6, 6, 6, 5, 5, 5, 4, 4, 4, 3, 3, 3, 2, 2, 2, 0],
+    [0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 6, 6, 6, 5, 5, 5, 4, 4, 4, 3, 3, 3, 2, 2, 2],
+    [0, 0, 1, 2, 1, 2, 1, 0, 0, 0, 0, 0, 6, 6, 6, 5, 5, 5, 4, 4, 4, 3, 3, 3, 2, 2],
+    [0, 0, 1, 2, 2, 2, 1, 0, 0, 0, 0, 0, 0, 6, 6, 6, 5, 5, 5, 4, 4, 4, 3, 3, 3, 2],
+    [0, 0, 0, 1, 2, 1, 0, 0, 0, 0, 0, 0, 0, 0, 6, 6, 6, 5, 5, 5, 4, 4, 4, 3, 3, 3],
+    [0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6, 6, 6, 5, 5, 5, 4, 4, 4, 3, 3],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 6, 6, 6, 5, 5, 5, 4, 4, 4, 3],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 1, 2, 1, 0, 0, 6, 6, 6, 5, 5, 5, 4, 4, 4],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 2, 2, 1, 0, 0, 0, 6, 6, 6, 5, 5, 5, 4, 4],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 1, 0, 0, 0, 0, 0, 6, 6, 6, 5, 5, 5, 4],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 6, 6, 6, 5, 5, 5],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6, 6, 6, 5, 5],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6, 6, 6, 5],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6, 6, 6],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6, 6],
+  ];
+
+  for (let i = 0; i < arrY; i++) { //nested loop to draw all the pixels
+    for (let j = 0; j < arrX; j++) {
+      setTimeout(function () {
+        switch (rainbowColors[i][j]) { //switch to assign a color to the numbers used in the 2D array
+          case 0:
+            fill(224, 224, 224); //background fill
+            break;
+          case 1:
+            fill(0, 0, 0); //black
+            break;
+          case 2:
+            fill(255, 0, 0); //red
+            break;
+          case 3:
+            fill(255, 128, 0); //orange
+            break;
+          case 4:
+            fill(255, 255, 0); //yellow
+            break;
+          case 5:
+            fill(0, 255, 0); //green
+            break;
+          case 6:
+            fill(0, 128, 255); //blue
+            break;
+        }
+
+        if ((i + 1) === arrY && (j + 1) === arrX) {
+          isDrawing = false; //checking if the art is done being drawn
+        }
+
+        noStroke();
+        rect(XPos + (j * 10), YPos + (i * 10), size, size); //rectangles that the nested loop will draw
+      }, 100 * i);
+    }
+  }
+}
