@@ -14,15 +14,15 @@ function setup() {
   button.mousePressed(toadArt);
 
   button = createButton("Snake"); //button for snakeArt
-  button.position(470, 160);
+  button.position(470, 175);
   button.mousePressed(snakeArt);
 
   button = createButton("Harry Potter"); //button for harryArt
-  button.position(470, 240);
+  button.position(470, 270);
   button.mousePressed(harryArt);
 
   button = createButton("Rainbow"); //button for rainbowArt
-  button.position(470, 320);
+  button.position(470, 370);
   button.mousePressed(rainbowArt);
 
   noLoop(); //makes sure loop won't continue
